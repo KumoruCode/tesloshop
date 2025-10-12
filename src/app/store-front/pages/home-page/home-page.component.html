@@ -3,7 +3,12 @@
 <hr>
 
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-10 gap-3">
-<product-card></product-card>
+
+@for(product of productResource.value()?.products; track product.id){
+<product-card [product]="product"></product-card>
+} @empty {
+  <p>No hay productos</p>
+}
 </div>
 
 
