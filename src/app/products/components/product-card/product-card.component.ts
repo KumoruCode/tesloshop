@@ -12,10 +12,8 @@ import { environment } from 'src/environments/environment';
 })
 export class ProductCardComponent{
 
-
   baserUrl = environment.baseUrl;
 
   product = input.required<Product>()
-
 
 }
