@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { ProductResponse } from '@products/interfaces/product.interface';
-import { generate, Observable, tap } from 'rxjs';
+import { Product, ProductResponse } from '@products/interfaces/product.interface';
+import { Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 const baseUrl = environment.baseUrl;
@@ -36,4 +36,9 @@ export class ProductsService {
       )
     )
   }
+
+  getProductByIdSlug(idSlug: string): Observable<Product>{
+    return this.http.get<Product>(`${baseUrl}/products/${idSlug}`)
+  }
+
 }
