@@ -6,7 +6,7 @@
 
 @if(productResource.hasValue()){
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-    <p>imágenes</p>
+    <product-carousel [images]="productResource.value().images ?? []"></product-carousel>
     <div>
       <h1> {{productResource.value().title}}</h1>
       <div class="divider"></div>
