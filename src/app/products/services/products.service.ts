@@ -22,6 +22,7 @@ export class ProductsService {
 
   getProducts(options: Options): Observable<ProductResponse> {
 
+    console.log('=======>',options)
     const { limit = 9, offset = 0, gender = ''} = options;
 
     return this.http.get<ProductResponse>(`${baseUrl}/products`,{

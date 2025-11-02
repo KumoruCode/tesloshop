@@ -15,7 +15,6 @@ productsService = inject(ProductsService);
 productResource = rxResource({
   request: () => ({}),
   loader: ({ request }) =>{
-
     return this.productsService.getProducts({});
   }
 })

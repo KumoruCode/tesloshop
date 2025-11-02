@@ -12,7 +12,6 @@
     <p>{{product().description | slice : 0: 70}} ...</p>
     <div class="card-actions justify-end">
       <a class="link link-accent" [routerLink]="['/product', `${product().slug}`]">Ver</a>
-      <pre>{{`/product/${product().slug}`}}</pre>
     </div>
   </div>
 </div>

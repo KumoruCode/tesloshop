@@ -29,10 +29,6 @@ export class ProductCarouselComponent implements AfterViewInit {
 
   images = input.required<string[]>();
 
-  ngOnInit(){
-    console.log('IMAGENES: ',this.images())
-  }
-
   ngAfterViewInit(): void {
     const element = this.swiperDiv().nativeElement;
     if (!element) return;
