@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { User } from '@auth/interfaces/user.interface';
+import { environment } from 'src/environments/environment';
 
 type AuthStatus = 'checking' | 'authentiucated' | 'not-authenticated';
+const baseUrl = environment.baseUrl;
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +25,13 @@ export class AuthService {
     return 'not-authenticated';
   });
 
-
   user = computed<User|null>(() => this._user());
   token = computed(this._token);
+
+  login(email: string, password: string){
+    return this.http.post(`${baseUrl}/auth/login`, {
+      email: email,
+      password: password,
+    })
+  }
 }
