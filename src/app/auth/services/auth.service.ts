@@ -35,6 +35,18 @@ export class AuthService {
   user = computed<User | null>(() => this._user());
   token = computed(this._token);
 
+  register(fullName: string, email: string, password: string): Observable<boolean>{
+    return this.http.post<AuthResponse>(`${baseUrl}/auth/register`,{
+      fullName: fullName,
+      email: email,
+      password: password
+    }).pipe(
+      map(resp => this.handleAuthSuccess(resp)),
+      catchError((error: any) => this.handleAuthError(error))
+    )
+
+  }
+
   login(email: string, password: string): Observable<boolean> {
     return this.http
       .post<AuthResponse>(`${baseUrl}/auth/login`, {
@@ -68,9 +80,11 @@ export class AuthService {
   }
 
   logout() {
+    console.log('cerramos sesión')
     this._user.set(null);
     this._token.set(null);
     this._authStatus.set('not-authenticated');
+    localStorage.removeItem('token');
   }
 
   private handleAuthSuccess({ token, user }: AuthResponse) {
@@ -78,9 +92,7 @@ export class AuthService {
     this._authStatus.set('authenticated');
     this._token.set(token);
 
-    // TODO: revertir
-    //localStorage.setItem('token', token);
-
+    localStorage.setItem('token', token);
     return true
   }
 
@@ -88,10 +100,4 @@ export class AuthService {
     this.logout();
     return of(false);
   }
-
-  //check authentication
-
-  // Registro
-
-  // check logout
 }
