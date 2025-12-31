@@ -1,10 +1,11 @@
 import { Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { JsonPipe } from '@angular/common';
+import { AuthService } from '../../services/auth.service';
+
 @Component({
   selector: 'app-login-page',
-  imports: [RouterLink, ReactiveFormsModule, JsonPipe],
+  imports: [RouterLink, ReactiveFormsModule],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.css',
 })
@@ -12,6 +13,8 @@ export class LoginPageComponent {
   fb = inject(FormBuilder);
   hasError = signal(false);
   isPosting = signal(false);
+
+  AuthService = inject(AuthService);
 
   loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -28,6 +31,10 @@ export class LoginPageComponent {
     }
 
     const {email = '', password = ''} = this.loginForm.value;
+
+    this.AuthService.login(email!, password!).subscribe(response => {
+      console.log(response)
+    });
 
     console.log({email, password})
   }
