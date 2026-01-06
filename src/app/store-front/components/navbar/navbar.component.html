@@ -27,13 +27,13 @@
       <button class="btn btn-ghost">
       {{authService.user()?.fullName}}
       </button>
-      <button class="btn btn-sm btn-error" (click)="authService.logout()">
+      <button class="btn btn-sm btn-error me-5" (click)="authService.logout()">
         Salir
       </button>
     }
     <!---->
     @else if( authService.authStatus() == 'not-authenticated'){
-      <a routerLink="/auth/login" class="btn btn-primary">Login </a>
+      <a routerLink="/auth/login" class="btn btn-primary me-5">Login </a>
 
     }
     <!---->

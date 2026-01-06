@@ -7,7 +7,7 @@ const baseUrl = environment.baseUrl;
   name: 'productImage',
 })
 export class ProductImagePipe implements PipeTransform {
-  transform(value: string | string[]): string {
+  transform(value: string | string[] | undefined): string {
     if (Array.isArray(value) && value.length > 0) {
       return `${baseUrl}/files/product/${value[0]}`;
     }
