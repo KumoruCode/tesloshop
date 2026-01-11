@@ -41,4 +41,9 @@ export class ProductsService {
     return this.http.get<Product>(`${baseUrl}/products/${idSlug}`)
   }
 
+
+  getProductById(id: string): Observable<Product>{
+    return this.http.get<Product>(`${baseUrl}/products/${id}`)
+  }
+
 }

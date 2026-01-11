@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, computed } from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { ProductTableComponent } from '@products/components/productTable/productTable.component';
 import { ProductsService } from '../../../products/services/products.service';
