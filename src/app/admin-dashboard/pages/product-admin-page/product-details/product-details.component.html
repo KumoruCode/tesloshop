@@ -5,34 +5,45 @@
   <!-- Datos generales -->
   <div class="flex flex-col gap-2">
     <h2 class="text-2xl font-bold h-12">Datos generales</h2>
-    <input type="text" placeholder="Título" class="input input-bordered w-full" formControlName=title />
+    <input type="text" placeholder="Título" class="input input-bordered w-full" formControlName=title
+      [class.border-red-500]="productForm.get('title')?.errors ?? false" />
+    <form-error-label [control]="productForm.get('title')!"></form-error-label>
 
-    <input type="text" placeholder="Slug" class="input input-bordered w-full" formControlName="slug" />
+    <input type="text" placeholder="Slug" class="input input-bordered w-full" formControlName="slug"
+      [class.border-red-500]="productForm.get('slug')?.errors ?? false" />
+    <form-error-label [control]="productForm.get('slug')!"></form-error-label>
 
-    <textarea class="textarea textarea-bordered" placeholder="Descripción" rows="6"
-      formControlName="description"></textarea>
-
+    <textarea class="textarea textarea-bordered" placeholder="Descripción" rows="6" formControlName="description"
+      [class.border-red-500]="productForm.get('description')?.errors ?? false"></textarea>
+    <form-error-label [control]="productForm.get('description')!"></form-error-label>
     <h2 class="text-lg font-bold">Datos de venta</h2>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-      <input type="number" placeholder="Precio" class="input input-bordered w-full" formControlName="price" />
+      <input type="number" placeholder="Precio" class="input input-bordered w-full" formControlName="price"
+        [class.border-red-500]="productForm.get('price')?.errors ?? false" />
+      <form-error-label [control]="productForm.get('price')!"></form-error-label>
 
-      <input type="number" placeholder="Inventario" class="input input-bordered w-full" formControlName="stock" />
+      <input type="number" placeholder="Inventario" class="input input-bordered w-full" formControlName="stock"
+        [class.border-red-500]="productForm.get('stock')?.errors ?? false" />
+
+      <form-error-label [control]="productForm.get('stock')!"></form-error-label>
     </div>
 
     <!-- tags -->
-    <input type="text" placeholder="Tags" class="input input-bordered w-full" formControlName="tags" />
+    <input type="text" placeholder="Tags" class="input input-bordered w-full" formControlName="tags"
+      [class.border-red-500]="productForm.get('tags')?.errors ?? false" />
+    <form-error-label [control]="productForm.get('tags')!"></form-error-label>
 
     <!-- Botones para el género -->
     <div class="grid grid-cols-4 gap-2">
       <!-- <button class="btn btn-sm btn-outline">Masculino</button> -->
       <button class="btn btn-sm" [class.btn-primary]="productForm.value.gender === 'men'"
         (click)="productForm.patchValue({gender: 'men'})" type="button">Masculino</button>
-      <button class="btn btn-sm " [class.btn-btn-accent]="productForm.value.gender === 'women'"
+      <button class="btn btn-sm " [class.btn-accent]="productForm.value.gender === 'women'"
         (click)="productForm.patchValue({gender: 'women'})" type="button">Femenino</button>
-      <button class="btn btn-sm " [class.btn-btn-warning]="productForm.value.gender === 'kids'"
+      <button class="btn btn-sm " [class.btn-warning]="productForm.value.gender === 'kids'"
         (click)="productForm.patchValue({gender: 'kids'})" type="button">Kid</button>
-      <button class="btn btn-sm " [class.btn-btn-secondary]="productForm.value.gender === 'unisex'"
+      <button class="btn btn-sm " [class.btn-secondary]="productForm.value.gender === 'unisex'"
         (click)="productForm.patchValue({gender: 'unisex'})" type="button">Unisex</button>
     </div>
 
